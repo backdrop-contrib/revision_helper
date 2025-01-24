@@ -2,4 +2,4 @@ name = Revision Helper
 type = module
 description = Add revision class on the pages that has active revisions.
 backdrop = 1.x
-package = Misc
+package = Other
