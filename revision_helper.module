@@ -1,0 +1,63 @@
+<?php
+/**
+ * @file
+ * Code for the FMR Revision class feature.
+ */
+
+  /**
+   * Implements hook_menu().
+   */
+  function revision_helper_menu() {
+    $items = array();
+
+    $items['admin/config/content/revision-helper'] = array(
+      'title' => 'Revision Helper',
+      'description' => 'Configure settings for Revision Helper.',
+      'page callback' => 'backdrop_get_form',
+      'page arguments' => array('revision_helper_settings'),
+      'access arguments' => array('administer site configuration'),
+      'file' => 'revision_helper.admin.inc',
+      'type' => MENU_NORMAL_ITEM,
+    );
+
+    return $items;
+  }
+
+/**
+ * Implements hook_preprocess_HOOK() for HTML.
+ * Add a dynamic CSS style for revisions based on user configuration.
+ */
+function revision_helper_preprocess_page(&$variables) {
+  // Load the configured revision color.
+  $config = config_get('revision_helper.settings');
+  $color = isset($config['revision_color']) ? $config['revision_color'] : '#0000FF'; // Default to blue.
+
+  // Add inline CSS to define the color for revisions.
+  if (!empty($color)) {
+    $sanitized_color = check_plain($color); // Sanitize the color value.
+    $inline_css = "<style>
+      article.revision {
+        background-color: {$sanitized_color};
+      }
+    </style>";
+    backdrop_add_html_head(array(
+      '#type' => 'markup',
+      '#markup' => $inline_css,
+    ), 'revision_color_css');
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for nodes.
+ * Add the 'revision' class to nodes that are revisions.
+ */
+
+function revision_helper_preprocess_node(&$variables) {
+  if (!$variables['is_active_revision']) {
+    $variables['classes'][] = 'revision';
+    $config = config_get('revision_helper.settings');
+    if (!empty($config['revision_status_message'])) {
+      backdrop_set_message(t('You are viewing a revision that may be different from the current version of this content.'), 'warning');
+    }
+  }
+}
