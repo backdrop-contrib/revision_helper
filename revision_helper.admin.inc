@@ -42,5 +42,5 @@ function revision_helper_settings_form_submit($form, &$form_state) {
   // Save the selected color to configuration.
   config_set('revision_helper.settings', 'revision_color', $form_state['values']['revision_color']);
   config_set('revision_helper.settings', 'revision_status_message', $form_state['values']['revision_status_message']);
-  backdrop_set_message(t('The configuration has been saved.'));
+  backdrop_set_message(t('The configuration has been saved.'), 'status');
 }
