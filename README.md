@@ -1,13 +1,14 @@
 Revision Helper
 ======================
 
-This module provides options to:
+This very simple module provides options to:
 
 * Set a custom background color on node revisions
 * Add a warning message to node revisions
 
 The goal is make it clear and alert site editors when they are viewing
-a revision of a node that is not the active version.
+a revision of a node that is not the active version. We are open to adding
+additional features to this module to help editors manage revisions.
 
 
 Installation
@@ -16,9 +17,7 @@ Installation
 - Install this like any other module using the official Backdrop CMS 
   instructions at https://backdropcms.org/guide/modules.
 
-Uninstall or Upgrate Options
-----------------------------
-
+- Config available at `/admin/config/content/revision-helper`
 
 Issues
 ------
