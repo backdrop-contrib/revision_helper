@@ -1,7 +1,7 @@
 <?php
 
   /**
- * Settings form for My Module.
+ * Settings form for Revision Helper.
  */
 function revision_helper_settings($form, &$form_state) {
 
