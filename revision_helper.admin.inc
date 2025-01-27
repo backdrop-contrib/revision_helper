@@ -13,7 +13,7 @@ function revision_helper_settings($form, &$form_state) {
   // Add a color picker.
   $form['revision_color'] = array(
     '#type' => 'color',
-    '#title' => t('Revision Border Color'),
+    '#title' => t('Revision Background Color'),
     '#default_value' => isset($config['revision_color']) ? $config['revision_color'] : '#ff0000',
     '#description' => t('Choose a color to highlight content marked as a revision.'),
   );
